@@ -11,7 +11,7 @@
 
 ## Iteration 1 - Items, Attendees & Auctions
 
-Use TDD to create Item, Attendee, & Auction that will respond to the interaction pattern below:
+Use TDD to create Item, Attendee, & Auction that will respond to the interaction pattern below. Yes, this is 3 classes, but don't panic! They are starting very small and simple!:
 
 ```ruby
 pry(main)> require './lib/item'
