@@ -19,17 +19,23 @@ RSpec.describe do
     expect(@auction = Auction.new).to be_an_instance_of(Auction)
   end
 
-  it "has can add items & can access item names" do
+  it "has can add items" do
     expect(@auction.items).to eq([])
     #=> []
 
     @auction.add_item(@item1)
     @auction.add_item(@item2)
 
-    expect(@auction.items).to eq(@item1, @item2)
+    expect(@auction.items).to eq([@item1, @item2])
     #=> [#<Item:0x00007fbda98fa1b0 ...>, #<Item:0x00007fbda91874f0 ...>]
-  
-    expect(@auction.item_names).to eq(["Chalkware Piggy Bank", "Bamboo Picture Frame"])
-    #=> ["Chalkware Piggy Bank", "Bamboo Picture Frame"]
+    end
+    
+    it "can access item names" do
+      @auction.add_item(@item1)
+      @auction.add_item(@item2)
+      
+      expect(@auction.item_names).to eq(["Chalkware Piggy Bank", "Bamboo Picture Frame"])
+      #=> ["Chalkware Piggy Bank", "Bamboo Picture Frame"] 
   end
 end
+
