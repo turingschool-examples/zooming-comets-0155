@@ -7,11 +7,11 @@ class Item
     @bids = {}
   end
 
-  def add_bid(attendee, ammout)
+  def add_bid(attendee, amount)
     @bids[attendee] = amount
   end
 
-  def curent_high_bid
+  def current_high_bid
     @bids.values.max
   end
 end

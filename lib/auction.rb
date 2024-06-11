@@ -18,6 +18,6 @@ class Auction
   end
 
   def potential_revenue
-    @itmes.sum { |item| item.current_high_bid.to_i }
+    @items.sum { |item| item.current_high_bid.to_i}
   end
 end
