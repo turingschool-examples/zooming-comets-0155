@@ -7,6 +7,27 @@ RSpec.describe do
     
     @item2 = Item.new('Bamboo Picture Frame')
     #=> #<Item:0x00007fbda91874f0 @bids={}, @name="Bamboo Picture Frame">
+
+    @item3 = Item.new('Homemade Chocolate Chip Cookies')
+    #=> #<Item:0x00007fdc071ab040 @bids={}, @name="Homemade Chocolate Chip Cookies">
+    
+    @item4 = Item.new('2 Days Dogsitting')
+    #=> #<Item:0x00007fdc088fb6f0 @bids={}, @name="2 Days Dogsitting">
+    
+    @item5 = Item.new('Forever Stamps')
+    #=> #<Item:0x00007fdc071695f0 @bids={}, @name="Forever Stamps">
+    
+    @attendee = Attendee.new({name: 'Megan', budget: '$50'})
+    #=> #<Attendee:0x00007fbda913f038 @budget=50, @name="Megan">
+    
+    @attendee2 = Attendee.new({name: 'Bob', budget: '$75'})
+    #=> #<Attendee:0x00007fdc071131c8 @budget=75, @name="Bob">
+    
+    @attendee3 = Attendee.new({name: 'Mike', budget: '$100'})
+    #=> #<Attendee:0x00007fdc070e2190 @budget=100, @name="Mike">
+    
+    @auction = Auction.new
+    #=> #<Auction:0x00007fbda90f1cc0 @items=[]>
   end
 
   it "can instantiate" do
@@ -19,8 +40,8 @@ RSpec.describe do
     #=> "Chalkware Piggy Bank"
   end
 
-  it "can place bids on items & have a high bid" do
-    @auction.add_item(item1)
+  it "can place bids on items" do
+    @auction.add_item(@item1)
 
     # Bids not yet placed on any `item`
     expect(@item1.bids).to eq({})
@@ -29,7 +50,7 @@ RSpec.describe do
     @item1.add_bid(@attendee2, 20)
     @item1.add_bid(@attendee1, 22)
 
-    expect(@item1.bids).to eq({@attendee1: 22, @attendee2: 20})
+    expect(@item1.bids).to eq({@attendee1 => 22, @attendee2 => 20})
     #=> {
     #     #<Attendee:0x00007fdc071131c8 ...> => 20,
     #     #<Attendee:0x00007fdc088f0e08 ...> => 22
@@ -44,3 +65,4 @@ RSpec.describe do
     #=> 22
   end  
 end
+
