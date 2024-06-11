@@ -16,10 +16,22 @@ class Auction
   end
 
   def unpopular_items
-    items = []
+    items_without_bids = []
     @items.each do |item|
-      items << item if item.bids == {}
+      items_without_bids << item if item.bids == {}
     end
     items
+  end
+
+  def potential_revenue
+    items_with_bids = []
+    @items.each do |item|
+      items_with_bids << item if item.bids != {}
+    end
+    item_bids = []
+    items_with_bids.each do |item|
+      item_bids << item.current_high_bid
+    end
+    item_bids.sum
   end
 end
