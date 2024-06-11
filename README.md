@@ -21,7 +21,7 @@ pry(main)> require './lib/auction'
 pry(main)> require './lib/attendee'
 #=> true
 
-pry(main)> item1 = Item.new('Chalkware Piggy Bank')
+pry(main)> item1 = Item.new
 #=> #<Item:0x00007fbda98fa1b0 @bids={}, @name="Chalkware Piggy Bank">
 
 pry(main)> item1.name
