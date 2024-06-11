@@ -82,9 +82,6 @@ RSpec.describe Auction do
       @item2.add_bid(@attendee2, 15)
       @item2.add_bid(@attendee3, 20)
 
-      # puts @auction.bidders.inspect
-      # binding.pry
-
       expect(@auction.bidders).to eq(['Megan', 'Bob', 'Mike'])
     end
   end
@@ -103,14 +100,14 @@ RSpec.describe Auction do
   
       bidder_info = @auction.bidder_info
 
-      # puts @auction.bidder_info.inspect
-      # binding.pry
+    
   
       expect(bidder_info[@attendee1]).to eq({ budget: 50, items: [@item1] })
       expect(bidder_info[@attendee2]).to eq({ budget: 75, items: [@item1, @item3] })
       expect(bidder_info[@attendee3]).to eq({ budget: 100, items: [@item4] })
     end
   end
+
   
 
 

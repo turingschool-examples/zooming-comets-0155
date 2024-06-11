@@ -34,11 +34,17 @@ class Auction
     info = Hash.new { |hash, key| hash[key] = { budget: key.budget, items: [] } }
     @items.each do |item|
       item.bids.each_key do |attendee|
-        info[attendee][:items] << item
+        info[attendee][:items] << item  
       end
     end
     info
   end
+
+  
+  
+
+
+  
   
 
   
