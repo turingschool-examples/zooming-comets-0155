@@ -13,9 +13,14 @@ class Auction
   end
 
   def unpopular_items
-    if @item.unpopular? == true
+    @items.map {|item| item.unpopular?}
       @unpopular_items << @item
     end
+  end
+
+  def potential_revenue
+    highest_bid_array = @items.map {|item| item.current_high_bid}
+    highest_bid_array.sum
   end
 
 end
