@@ -41,7 +41,10 @@ class Auction
     bidder_names = []
     @items.each do |item|
       if item.bids.empty? == false
-        bidder_names << item.bids.keys
+        # binding.pry
+        bidder_names << item.bids.keys.map do |attendee|
+          attendee.name
+        end
       end
     end
     bidder_names.flatten

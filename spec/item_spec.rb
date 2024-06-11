@@ -65,11 +65,13 @@ RSpec.describe do
     #=> 22
   end
 
-  it "disables bidding once item is bid upon" do
+  it "disables bidding on an item when called on that item" do
     @auction.add_item(@item1)
     @item1.add_bid(@attendee1, 22)
     
-    expect(@item.close_bidding(@attendee2, 30)).to eq(false)
+    @item1.close_bidding
+
+    expect(@item1.add_bid(@attendee2, 42)).to be(false)
   end
 end
 
