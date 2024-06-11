@@ -32,4 +32,16 @@ RSpec.describe Item do
 
         expect(@item1.current_high_bid).to eq(22)
     end
+
+    it 'can close bidding' do
+        @item1.close_bidding
+
+        expect(@item1.bidding_open).to eq(false)
+    end
+
+    it 'cannot add bids if bidding is closed' do
+        @item1.close_bidding
+
+        expect(@item1.add_bid(@attendee2, 20)).to eq("Bidding is closed for this item.")
+    end
 end
