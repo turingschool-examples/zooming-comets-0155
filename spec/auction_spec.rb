@@ -55,5 +55,62 @@ RSpec.describe Auction do
 
     expect(auction.potential_revenue).to eq(37)
   end
+
+  it 'can return a list of bidders' do
+    auction = Auction.new
+    item1 = Item.new('Chalkware Piggy Bank')
+    item2 = Item.new('Bamboo Picture Frame')
+
+    auction.add_item(item1)
+    auction.add_item(item2)
+
+    attendee1 = Attendee.new({name: 'Megan', budget: '$50'})
+    attendee2 = Attendee.new({name: 'Bob', budget: '$75'})
+
+    item1.add_bid(attendee1, 22)
+    item2.add_bid(attendee2, 20)
+
+    expect(auction.bidders).to eq(['Megan', 'Bob'])
+  end
+
+  it 'can return bidder info' do 
+    auction = Auction.new
+    item1 = Item.new('Chalkware Piggy Bank')
+    item2 = Item.new('Bamboo Picture Frame')
+
+    auction.add_item(item1)
+    auction.add_item(item2)
+
+    attendee1 = Attendee.new({name: 'Megan', budget: '$50'})
+    attendee2 = Attendee.new({name: 'Bob', budget: '$75'})
+
+    item1.add_bid(attendee1, 22)
+    item2.add_bid(attendee2, 20)
+
+    expected_info = {
+      attendee1 => {
+        :budget => 50,
+        :items => [item1]
+      }, 
+      attendee2 => {
+        :budget => 75,
+        :items => [item2]
+      }
+    }
+
+    expect(auction.bidder_info). to eq(expected_info)
+  end
+
+  it 'can close bidding on an item' do
+    item = Item.new('Chalkware Piggy Bank')
+    attendee1 = Attendee.new({name: 'Megan', budget: '$50'})
+    attendee2 = Attendee.new({name: 'Bob', budget: '$75'})
+
+    item.add_bid(attendee1, 22)
+    item.close_bidding
+    item.add_bid(attendee2, 25)
+    
+    expect(item.bids).to eq({attendee1 => 22})
+  end
 end
 
