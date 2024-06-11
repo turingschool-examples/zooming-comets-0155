@@ -1,6 +1,6 @@
 require './lib/item'
-require './lib/auction'
 require './lib/attendee'
+require './lib/auction'
 
 RSpec.configure do |config|
   config.formatter = :documentation
