@@ -24,11 +24,15 @@ class Auction
     items_without_bids
   end
 
-  def potential_revenue
+  def items_with_bids #helper_method refactor
     items_with_bids = []
     @items.each do |item|
       items_with_bids << item if item.bids != {}
     end
+    items_with_bids
+  end
+
+  def potential_revenue
     item_bids = []
     items_with_bids.each do |item|
       item_bids << item.current_high_bid
@@ -37,10 +41,6 @@ class Auction
   end
 
   def bidders
-    items_with_bids = []
-    @items.each do |item|
-      items_with_bids << item if item.bids != {}
-    end
     items_with_bids.each do |item|
       item.bids.keys.each do |attendee|
         @bidders << attendee.name

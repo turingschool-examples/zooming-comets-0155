@@ -88,7 +88,7 @@ RSpec.describe Item do
 
       item1.close_bidding
 
-      expect(item1.add_bid(attendee1, 22)).to eq "Pancakes :)"
+      expect(item1.add_bid(attendee1, 22)).to eq "Pancakes"
       expect(item1.bids).to eq ({attendee2 => 20})
     end
   end
