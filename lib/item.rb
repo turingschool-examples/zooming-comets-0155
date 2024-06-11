@@ -9,4 +9,9 @@ class Item
   def add_bid(attendee, bid)
     @bids[attendee] = @bids.fetch(attendee, bid)
   end
+
+  def current_high_bid
+    attendee = @bids.max_by {|_, bid| bid}
+    attendee[1]
+  end
 end
