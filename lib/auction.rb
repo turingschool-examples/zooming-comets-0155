@@ -36,7 +36,7 @@ class Auction
     item_bids.sum
   end
 
-  def auction_bidders
+  def bidders
     items_with_bids = []
     @items.each do |item|
       items_with_bids << item if item.bids != {}

@@ -14,4 +14,6 @@ class Item
     attendee = @bids.max_by {|_, bid| bid}
     attendee[1]
   end
+
+  
 end

@@ -97,7 +97,7 @@ RSpec.describe Auction do
     end
   end
 
-  describe '#auction_bidders' do
+  describe '#bidders' do
     it 'can return array of bidders names as string' do
       item1 = Item.new('Chalkware Piggy Bank')
       item2 = Item.new('Bamboo Picture Frame')
@@ -115,17 +115,21 @@ RSpec.describe Auction do
       auction.add_item(item4)
       auction.add_item(item5)
 
-      expect(auction.auction_bidders).to eq []
+      expect(auction.bidders).to eq []
 
       item1.add_bid(attendee2, 20)
       item1.add_bid(attendee1, 22)
       item3.add_bid(attendee2, 15)
 
-      expect(auction.auction_bidders).to eq ['Bob', 'Megan']
+      expect(auction.bidders).to eq ['Bob', 'Megan']
       item4.add_bid(attendee3, 50)
 
-      expect(auction.auction_bidders).to eq ['Bob', 'Megan', 'Mike']
+      expect(auction.bidders).to eq ['Bob', 'Megan', 'Mike']
     end
   end
+
+  # describe '#bidder_info' do
+  #   it 'can return hash with key as attendee object and value of hash with key as :budget and value of budget as integer
+  # end
 end
 
