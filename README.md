@@ -91,6 +91,22 @@ Use TDD to update your classes to respond to the following interaction pattern. 
 - `unpopular_items` are those items which have no bids.
 - `potential_revenue` is the total possible sale price of the items (the items highest bid)
 
+### Methods ###
+
+- Auction
+  - #unpopular_items
+  - #potential_revenue
+
+- Add new class instances
+  - Items
+  - Attendees
+
+- Add to Items
+  - @bids = {}
+  - #add_bid
+  - #current_high_bid
+
+
 ```ruby
 pry(main)> require './lib/item'
 #=> true
