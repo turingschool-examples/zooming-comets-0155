@@ -5,5 +5,12 @@ class Item
       @name = name
       @bids = {}
     end
+
+    def add_bid(attendee, money)
+      @bids[attendee] = money
   end
-  
+
+    def current_high_bid
+      @bids.values.max
+    end
+  end
