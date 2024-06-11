@@ -32,7 +32,7 @@ class Auction
         end
     end
 
-    #this iterates the item array. each @item is an instance of the Item class. It also has an instance of the Attendee class.
+    #this iterates the item array. each @item is an instance of the Item class. It also has an instance of the Attendee class under bids.
     #this method creates a hash of the attendees who have bid on the items, and the items they have bid on. 
     def bidder_info
         bidder_info = {}
@@ -46,5 +46,16 @@ class Auction
             end
         end
         bidder_info
+    end
+
+    #itterates over items objects, and then over the bids hash. It then maps the keys of the bids hash to an array of unique attendee names.
+    def bidders
+        attendee_names = []
+        @item.each do |item|
+            item.bids.keys.map do |attendee|
+                attendee_names << attendee.name
+            end
+        end
+        attendee_names.uniq
     end
 end
