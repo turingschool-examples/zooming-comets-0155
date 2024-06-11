@@ -106,4 +106,9 @@ RSpec.describe Auction do
 
         expect(@auction.bidders).to eq(['Bob', 'Megan', 'Mike'])
     end
+
+    it 'can return the date' do
+        expect(@auction.date).to be_a(String)
+        expect(@auction.date).to eq('11/06/2024')
+    end
 end
