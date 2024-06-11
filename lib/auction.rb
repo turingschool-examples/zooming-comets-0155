@@ -1,11 +1,12 @@
 require_relative 'attendee'
-
+require 'date'
 
 class Auction
-    attr_reader :item
+    attr_reader :item, :date
 
     def initialize
         @item = []
+        @date = Date.today.strftime("%d/%m/%Y")
     end
 
     def add_item(item)
