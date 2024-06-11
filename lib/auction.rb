@@ -30,4 +30,17 @@ class Auction
 
         bidders.uniq
     end
+
+    def bidder_info
+        bidder = Hash.new { |hash, key| hash[key] = {budget: 0, items: [] }}
+
+        @items.each do |item|
+            item.bids.each do |attendee, bid|
+                bidder[attendee][:budget] = attendee.budget
+                bidder[attendee][:items] << item
+            end
+        end
+
+        bidder
+    end
 end
