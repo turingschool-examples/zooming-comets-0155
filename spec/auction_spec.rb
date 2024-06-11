@@ -100,6 +100,8 @@ RSpec.describe Auction do
   
       bidder_info = @auction.bidder_info
 
+      binding.pry
+
     
   
       expect(bidder_info[@attendee1]).to eq({ budget: 50, items: [@item1] })
