@@ -4,11 +4,14 @@ class Item
     def initialize(name)
       @name = name
       @bids = {}
+    
     end
 
     def add_bid(attendee, money)
+      
       @bids[attendee] = money
-  end
+      
+    end
 
     def current_high_bid
       @bids.values.max
