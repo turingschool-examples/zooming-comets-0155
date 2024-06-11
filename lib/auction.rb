@@ -9,4 +9,21 @@ class Auction
         @items << item
     end
 
+    def unpopular_items
+        @items.select { |item | item.bids.empty? }
+    end
+
+    def potential_revenue
+        @items.sum { |item| item.bids.sum {|__, bid_amount| bid_amount } }
+    end
+
+    def bidders
+        bidder_names = []
+        @items.each do |item|
+            item.bids.each_key do |bidder|
+                bidder_names << bidder.name
+            end
+        end
+    end
+
 end

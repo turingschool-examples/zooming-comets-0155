@@ -1,6 +1,7 @@
 require 'rspec'
 require './lib/auction'
 require './lib/item'
+require './lib/attendee'
 
 RSpec.describe Auction do
     before(:each) do
@@ -27,4 +28,39 @@ RSpec.describe Auction do
         end
     end
 
+    describe '#unpopular_items' do
+        it 'can say which items have no bids' do
+            @auction.add_item(@item1)
+            @auction.add_item(@item2)
+            @auction.add_item(@item3)
+            @auction.add_item(@item4)
+            @auction.add_item(@item5)
+            @item4.add_bid(@attendee3, 50)
+            @item3.add_bid(@attendee2, 15)
+            expect(@auction.unpopular_items).to eq([@item1, @item2, @item5])
+        end
+    end
+
+    describe '#potential_revenue' do
+        it 'can add the bids to say how much the auction could make' do
+            @auction.add_item(@item1)
+            @auction.add_item(@item2)
+            @auction.add_item(@item3)
+            @auction.add_item(@item4)
+            @auction.add_item(@item5)
+            @item4.add_bid(@attendee3, 50)
+            @item3.add_bid(@attendee2, 15)
+            expect(@auction.potential_revenue).to eq(65)
+        end
+    end
+
+    describe '#bidders' do
+        it "returns an array of bidders names as strings" do
+        @auction.add_item(@item1)
+        @auction.add_item(@item2)  
+        @item1.add_bid(@attendee1, 20)
+        @item2.add_bid(@attendee2, 25)
+        @item2.add_bid(@attendee3, 30)
+        expect(@auction.bidders).to eq("Megan", "Bob", "Mike")
+    end
 end
