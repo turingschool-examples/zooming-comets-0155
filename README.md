@@ -21,6 +21,35 @@ pry(main)> require './lib/auction'
 pry(main)> require './lib/attendee'
 #=> true
 
+
+# Item
+  # (up for bid)
+  # Stores a {} with ATTENDEE name and their BID on THAT item
+
+# Auction 
+  # Stores ITEMS in an []
+
+# Attendee
+  # DATA passed in via {}
+    # Person with a NAME
+    # AND a spending BUDGET ($)
+
+### Methods ###
+
+# ITEM
+  # @name
+
+# ATTENDEE
+  # @name
+  # @budget
+
+# AUCTION
+  #@items
+#item_names
+  # Stored as []
+#
+
+
 pry(main)> item1 = Item.new('Chalkware Piggy Bank')
 #=> #<Item:0x00007fbda98fa1b0 @bids={}, @name="Chalkware Piggy Bank">
 
