@@ -38,5 +38,25 @@ class Auction
       end
       info
     end
+
+    def close_auction
+      results = {}
+      @items.each do |item|
+        item.close_bidding
+        highest_bid = item.bids.max { |attendee, bid| bid }
+        if highest_bid
+          attendee, bid = highest_bid
+        if attendee.budget >= bid
+            attendee.budget -= bid
+            results[item] = attendee
+        else
+            results[item] = 'Not Sold'
+        end
+        else
+          results[item] = 'Not Sold'
+        end
+      end
+      results
+    end
 end
   

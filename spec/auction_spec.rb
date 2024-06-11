@@ -135,4 +135,21 @@ RSpec.describe Auction do
     allow(Date).to receive(:today).and_return(Date.new(2024, 6, 11))
     expect(auction.date).to eq('11/06/2024')
   end
+
+  xit 'closes and returns outcome of auction' do
+    auction = Auction.new
+    item1 = Item.new('Chalkware Piggy Bank')
+    item2 = Item.new('Bamboo Picture Frame')
+    auction.add_item(item1)
+    auction.add_item(item2)
+    attendee1 = Attendee.new({name: 'Megan', budget: '$50'})
+    attendee2 = Attendee.new({name: 'Bob', budget: '$75'})
+    item1.add_bid(attendee1, 20)
+    item1.add_bid(attendee2, 22)
+    item2.add_bid(attendee1, 30)
+    expected = {
+      item1 => attendee2,
+      item2 => attendee1}
+    expect(auction.close_auction).to eq(expected)
+  end
 end
