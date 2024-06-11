@@ -95,6 +95,14 @@ RSpec.describe do
   end
 
   it "returns bidders names as strings in an array" do
+    @auction.add_item(@item1)
+    @auction.add_item(@item2)
+
+    @item1.add_bid(@attendee1, 20)
+
+    @item2.add_bid(@attendee2, 36)
+    @item2.add_bid(@attendee3, 44)
+
     expect(@auction.bidders).to eq(["Megan", "Bob", "Mike"])
   end
 end

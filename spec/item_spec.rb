@@ -69,7 +69,7 @@ RSpec.describe do
     @auction.add_item(@item1)
     @item1.add_bid(@attendee1, 22)
     
-    expect(@item.add_bid(@attendee2, 30)).to eq(false)
+    expect(@item.close_bidding(@attendee2, 30)).to eq(false)
   end
 end
 

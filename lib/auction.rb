@@ -35,6 +35,17 @@ class Auction
     end
     revenue
   end
+
+
+  def bidders
+    bidder_names = []
+    @items.each do |item|
+      if item.bids.empty? == false
+        bidder_names << item.bids.keys
+      end
+    end
+    bidder_names.flatten
+  end
 end
 
 
