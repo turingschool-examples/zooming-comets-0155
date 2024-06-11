@@ -15,4 +15,5 @@ class Auction
     end
   end
 
+  
 end
