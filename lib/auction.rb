@@ -24,6 +24,18 @@ class Auction
                 bidder_names << bidder.name
             end
         end
+        bidder_names
     end
 
+    def bidder_info
+        bidder_info_hash = {}
+        @items.each do |item|
+          item.bids.each do |bidder, bid_amount|
+              if bidder_info_hash[bidder].nil?
+                bidder_info_hash[bidder] = { budget: bidder.budget, items: [] }
+              end
+                bidder_info_hash[bidder][:items] << item.name
+          end
+        end  
+    bidder_info_hash
 end

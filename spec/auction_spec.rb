@@ -11,6 +11,10 @@ RSpec.describe Auction do
         @item3 = item3 = Item.new('Homemade Chocolate Chip Cookies')
         @item4 = item4 = Item.new('2 Days Dogsitting')
         @item5 = item5 = Item.new('Forever Stamps')
+
+        @attendee1 = attendee1 = Attendee.new({name: 'Megan', budget: '$50'})
+        @attendee2 = attendee2 = Attendee.new({name: 'Bob', budget: '$75'})
+        @attendee3 = attendee3 = Attendee.new({name: 'Mike', budget: '$100'})
     end
     it 'exists' do
         expect(@auction).to be_an_instance_of(Auction)
@@ -56,11 +60,26 @@ RSpec.describe Auction do
 
     describe '#bidders' do
         it "returns an array of bidders names as strings" do
-        @auction.add_item(@item1)
-        @auction.add_item(@item2)  
-        @item1.add_bid(@attendee1, 20)
-        @item2.add_bid(@attendee2, 25)
-        @item2.add_bid(@attendee3, 30)
-        expect(@auction.bidders).to eq("Megan", "Bob", "Mike")
+            @auction.add_item(@item1)
+            @auction.add_item(@item2)  
+            @item1.add_bid(@attendee1, 20)
+            @item2.add_bid(@attendee2, 25)
+            @item2.add_bid(@attendee3, 30)
+            expect(@auction.bidders).to eq(["Megan", "Bob", "Mike"])
+        end
     end
+
+    describe '#bidder_info' do
+          it "returns a hash with the bidders budget and items" do
+                @auction.add_item(@item1)
+                @auction.add_item(@item2)  
+                @item1.add_bid(@attendee1, 20)
+                @item2.add_bid(@attendee2, 25)
+                @item2.add_bid(@attendee3, 30)
+                attendee_info = {@attendee1 => {:budget => 50, :items => [@item1]}, 
+                                @attendee2 => {:budget => 75, :items => [@item2]},
+                                @attendee3 => {:budget => 100, :items => [@item2]}}
+                expect(@auction.bidder_info).to eq(attendee_info)
+            end
+        end
 end
