@@ -15,5 +15,11 @@ class Auction
     end
   end
 
-  
+  def unpopular_items
+    items = []
+    @items.each do |item|
+      items << item if item.bids == {}
+    end
+    items
+  end
 end
