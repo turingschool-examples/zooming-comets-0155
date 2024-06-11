@@ -89,5 +89,29 @@ RSpec.describe Auction do
     end
   end
 
+  describe 'bidder info' do
+    it 'returns bidder info ' do
+      @auction.add_item(@item1)
+      @auction.add_item(@item2)
+      @auction.add_item(@item3)
+      @auction.add_item(@item4)
+
+      @item1.add_bid(@attendee1, 20)
+      @item1.add_bid(@attendee2, 28)
+      @item4.add_bid(@attendee3, 45)
+      @item3.add_bid(@attendee2, 10)
+  
+      bidder_info = @auction.bidder_info
+
+      # puts @auction.bidder_info.inspect
+      # binding.pry
+  
+      expect(bidder_info[@attendee1]).to eq({ budget: 50, items: [@item1] })
+      expect(bidder_info[@attendee2]).to eq({ budget: 75, items: [@item1, @item3] })
+      expect(bidder_info[@attendee3]).to eq({ budget: 100, items: [@item4] })
+    end
+  end
+  
+
 
 end
