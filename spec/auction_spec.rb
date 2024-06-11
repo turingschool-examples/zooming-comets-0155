@@ -73,4 +73,21 @@ RSpec.describe Auction do
       expect(@auction.potential_revenue).to eq(83)
     end
   end
+
+  describe 'bibbers' do
+    it 'lists names of the bidders' do
+      @auction.add_item(@item1)
+      @auction.add_item(@item2)
+      @item1.add_bid(@attendee1, 10)
+      @item2.add_bid(@attendee2, 15)
+      @item2.add_bid(@attendee3, 20)
+
+      # puts @auction.bidders.inspect
+      # binding.pry
+
+      expect(@auction.bidders).to eq(['Megan', 'Bob', 'Mike'])
+    end
+  end
+
+
 end

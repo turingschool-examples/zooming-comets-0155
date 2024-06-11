@@ -1,3 +1,6 @@
+require 'pry'
+
+
 class Auction
   attr_reader :items
 
@@ -20,4 +23,12 @@ class Auction
   def potential_revenue
     @items.sum { |item| item.current_high_bid.to_i }
   end
+
+  def bidders
+    @items.each_with_object([]) do |item, bidders|
+      item.bids.keys.each { |attendee| bidders << attendee.name unless bidders.include?(attendee.name) }
+    end
+  end
+
+  
 end
