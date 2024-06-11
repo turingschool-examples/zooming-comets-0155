@@ -1,3 +1,5 @@
+require_relative 'attendee'
+
 
 class Auction
     attr_reader :item
@@ -28,5 +30,21 @@ class Auction
         @item.sum do |item|
             item.current_high_bid || 0
         end
+    end
+
+    #this iterates the item array. each @item is an instance of the Item class. It also has an instance of the Attendee class.
+    #this method creates a hash of the attendees who have bid on the items, and the items they have bid on. 
+    def bidder_info
+        bidder_info = {}
+        @item.each do |item|
+            item.bids.each do |attendee, bid|
+                if bidder_info[attendee].nil?
+                    bidder_info[attendee] = {budget: attendee.budget, items: [item]}
+                else
+                    bidder_info[attendee][:items] << item
+                end
+            end
+        end
+        bidder_info
     end
 end
