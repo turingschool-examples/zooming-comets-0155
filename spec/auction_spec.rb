@@ -15,11 +15,12 @@ RSpec.describe Auction do
         end
     end
 
-    describe '#add_item' do
+    describe '#add_item + #item_names' do
         it 'should add items to an auction' do
             @auction.add_item(@item1)
             @auction.add_item(@item2)
             expect(@auction.items).to eq([@item1, @item2])
+            expect(@auction.item_names).to eq(["Chalkware Piggy Bank", "Bamboo Picture Frame"])
         end
     end
 end
