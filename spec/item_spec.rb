@@ -17,7 +17,7 @@ RSpec.describe do
     @item5 = Item.new('Forever Stamps')
     #=> #<Item:0x00007fdc071695f0 @bids={}, @name="Forever Stamps">
     
-    @attendee = Attendee.new({name: 'Megan', budget: '$50'})
+    @attendee1 = Attendee.new({name: 'Megan', budget: '$50'})
     #=> #<Attendee:0x00007fbda913f038 @budget=50, @name="Megan">
     
     @attendee2 = Attendee.new({name: 'Bob', budget: '$75'})

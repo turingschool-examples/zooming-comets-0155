@@ -9,7 +9,8 @@ class Item
 
   def add_bid(attendee, bid)
     # binding.pry
-    @bids[attendee] = bid
+    # Fixed. Needed to call `name` of attendee, not just `attendee`
+    @bids[attendee.name] = bid
   end
 
   def current_high_bid
@@ -18,3 +19,4 @@ class Item
     @bids.values.max
   end
 end
+

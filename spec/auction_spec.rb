@@ -17,7 +17,7 @@ RSpec.describe do
     @item5 = Item.new('Forever Stamps')
     #=> #<Item:0x00007fdc071695f0 @bids={}, @name="Forever Stamps">
     
-    @attendee = Attendee.new({name: 'Megan', budget: '$50'})
+    @attendee1 = Attendee.new({name: 'Megan', budget: '$50'})
     #=> #<Attendee:0x00007fbda913f038 @budget=50, @name="Megan">
     
     @attendee2 = Attendee.new({name: 'Bob', budget: '$75'})
@@ -54,20 +54,23 @@ RSpec.describe do
   end
 
   it "can have unpopular items" do
-    @auction.add_item(item1)
-    @auction.add_item(item2)
-    @auction.add_item(item3)
-    @auction.add_item(item4)
-    @auction.add_item(item5)
+    @auction.add_item(@item1)
+    @auction.add_item(@item2)
+    @auction.add_item(@item3)
+    @auction.add_item(@item4)
+    @auction.add_item(@item5)
 
-    @item1.add_bid(attendee2, 20)
-    @item1.add_bid(attendee1, 22)
-    @item4.add_bid(attendee3, 50)
+    
+    @item1.add_bid(@attendee2, 20)
+    @item1.add_bid(@attendee1, 22)
+    @item4.add_bid(@attendee3, 50)
+    
+    # binding.pry
 
     expect(@auction.unpopular_items).to eq([@item2, @item3, @item5])
     #=> [#<Item:0x00007fdc07925280 ...>, #<Item:0x00007fdc071ab040 ...>, #<Item:0x00007fdc071695f0 ...>]
 
-    @item3.add_bid(attendee2, 15)
+    @item3.add_bid(@attendee2, 15)
   
     # #unpopular_items array changes when @item3 receives a bid
     expect(@auction.unpopular_items).to eq([@item2, @item5])
@@ -75,10 +78,16 @@ RSpec.describe do
   end
 
   it "counts potential revenue" do
-    @item1.add_bid(attendee2, 20)
-    @item1.add_bid(attendee1, 22)
-    @item4.add_bid(attendee3, 50)
-    @item3.add_bid(attendee2, 15)
+    @auction.add_item(@item1)
+    @auction.add_item(@item2)
+    @auction.add_item(@item3)
+    @auction.add_item(@item4)
+    @auction.add_item(@item5)
+
+    @item1.add_bid(@attendee2, 20)
+    @item1.add_bid(@attendee1, 22)
+    @item4.add_bid(@attendee3, 50)
+    @item3.add_bid(@attendee2, 15)
     
     # Only highest bids are counted
     expect(@auction.potential_revenue).to eq(87)
