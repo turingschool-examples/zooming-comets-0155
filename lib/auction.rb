@@ -20,4 +20,14 @@ class Auction
     def potential_revenue
         @items.map { |item| item.bids.values.max || 0 }.sum
     end
+
+    def bidders
+        bidders = []
+
+        @items.each do |item|
+            item.bids.keys.each { |bidder| bidders << bidder.name }
+        end
+
+        bidders.uniq
+    end
 end
