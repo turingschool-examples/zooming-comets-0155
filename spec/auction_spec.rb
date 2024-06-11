@@ -130,4 +130,9 @@ RSpec.describe Auction do
     expect(item.bids).to eq({ attendee1 => 20 })
   end
 
+  it 'returns auction date' do
+    auction = Auction.new
+    allow(Date).to receive(:today).and_return(Date.new(2024, 6, 11))
+    expect(auction.date).to eq('11/06/2024')
+  end
 end

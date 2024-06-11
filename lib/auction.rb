@@ -1,8 +1,11 @@
+require 'date'
+
 class Auction
-    attr_reader :items
+    attr_reader :items, :date
   
     def initialize
       @items = []
+      @date = Date.today.strftime('%d/%m/%Y')
     end
   
     def add_item(item)
@@ -29,7 +32,7 @@ class Auction
       info = {}
       @items.each do |item|
         item.bids.each do |attendee, bid|
-          info[attendee] ||= { budget: attendee.budget, items: [] }
+          info[attendee] ||= { budget: attendee.budget, items: [] } #very handy operator for nil values, remember for future
           info[attendee][:items] << item
         end
       end
