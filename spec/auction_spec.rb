@@ -93,5 +93,9 @@ RSpec.describe do
     expect(@auction.potential_revenue).to eq(87)
     #=> 87
   end
+
+  it "returns bidders names as strings in an array" do
+    expect(@auction.bidders).to eq(["Megan", "Bob", "Mike"])
+  end
 end
 

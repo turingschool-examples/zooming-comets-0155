@@ -63,6 +63,13 @@ RSpec.describe do
     
     expect(@item1.current_high_bid).to eq(22)
     #=> 22
-  end  
+  end
+
+  it "disables bidding once item is bid upon" do
+    @auction.add_item(@item1)
+    @item1.add_bid(@attendee1, 22)
+    
+    expect(@item.add_bid(@attendee2, 30)).to eq(false)
+  end
 end
 
