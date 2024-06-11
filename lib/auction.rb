@@ -22,4 +22,11 @@ class Auction
             item.bids.empty?
         end
     end
+
+    #will only return the sum of the current high bids if true, OR will return 0 if nil.
+    def potential_revenue
+        @item.sum do |item|
+            item.current_high_bid || 0
+        end
+    end
 end
